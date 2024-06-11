@@ -1,5 +1,29 @@
 # Start, Follow, Read &mdash; Arabic
-The code in this directory is modified from the source code: [Start, Follow, Read](https://github.com/cwig/start_follow_read) and its [Python3 version](https://github.com/sharmaannapurna/start_follow_read_py3). See their detailed paper:.
+The code in this repository is modified from the source code: [Start, Follow, Read](https://github.com/cwig/start_follow_read) and its [Python3 version](https://github.com/sharmaannapurna/start_follow_read_py3). See their detailed paper:.
 [Curtis Wigington, Chris Tensmeyer, Brian Davis, William Barrett, Brian Price, and Scott Cohen. Start, Follow, Read: End-to-end full-page handwriting recognition](https://openaccess.thecvf.com/content_ECCV_2018/html/Curtis_Wigington_Start_Follow_Read_ECCV_2018_paper.html). In Proceedings of the European Conference on Computer Vision (ECCV), pages 372–388, 2018. 
 
-You can use this code to train and test handwriting recognition (HTR) of Arabic historic manuscripts. For the dataset, please see [Muharaf: Manuscripts of handwritten Arabic for cursive text recognition](https://github.com/MehreenMehreen/muharaf). 
+You can use this code to train and test handwriting recognition (HTR) of Arabic historic manuscripts.
+
+## Dataset
+For the dataset, please see [Muharaf: Manuscripts of handwritten Arabic for cursive text recognition](https://github.com/MehreenMehreen/muharaf). 
+
+## Setting up
+1. Clone the repo
+2. Setup the environment
+
+
+
+## Preporcessing
+The start, follow, read (SFR) system requires files in a specific format for training. You can download the preprocessed files for [Muharaf-public](https://zenodo.org/records/11492215). Make sure to extract them in the `main start_follow_read_arabic` directory.
+
+In order to preprocess the files yourself, follow these steps:
+1. Download the Muharaf-public dataset and place it in `data_files/public` folder in the `start_follow_read_arabic` directory.
+2. On the command line, switch to the main `start_follow_read_arabic` directory. Activate the sfr environment.
+3. From the command line run:
+   ```
+   python preprocessing_all.py ../data_files/public
+   ```
+Running this will create the following directory structure:   
+### Directory structure
+
+
