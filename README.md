@@ -15,7 +15,7 @@ For the dataset, please see [Muharaf: Manuscripts of handwritten Arabic for curs
 
 
 
-## Preporcessing
+## Preprocessing
 The start, follow, read (SFR) system requires files in a specific format for training. You can download the preprocessed files for [Muharaf-public](https://zenodo.org/records/11492215). Make sure to extract them in the `main start_follow_read_arabic` directory.
 
 In order to preprocess the files yourself, follow these steps:
