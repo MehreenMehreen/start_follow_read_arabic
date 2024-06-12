@@ -67,7 +67,9 @@ python arabic/stage1_hw.py trials/public_1100/set0/config_1150.yaml
 ```
 
 ## Inference
-# Results on the test set
+### Results on the page images of test set 
 
-# Inference on a handwritten page image
+### Results on the line images of test set 
+
+### Inference on a handwritten page image
 
