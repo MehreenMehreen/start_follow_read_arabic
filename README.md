@@ -33,7 +33,7 @@ The preprocessed directory looks like this: ![directory structure](images/direct
 ## Splitting data into (Train, Validate, Test) sets
 1. We recommend that you create a directory `trials` in main start_follow_read_arabic directory. Within this directory, you can run various trials.
 2. For example, we ran a trial on Muharaf-public with a split of (1100, 50, 66) images. This trial consisted of three different random splits of (train, validate, test) sets. [Download this folder here](https://zenodo.org/records/11492215). The three sets are in trials->public_1100 folder in sub-folders `set0`, `set1`, `set2`.
-3. To create random splits for a single trial run the script create_sets. In the arguments specify:
+3. To create random splits for a single trial run the script create_trials in the arabic directory. In the arguments specify:
    1. The input directory for preprocessed files. In our case it is data_files/sfr_arabic
    2.  The list of input files created after preprocessing, e.g., ['public_sfr'] for only public files or \['public_sfr', 'restricted_sfr'\]. These are the names of json files containing \[json image\] pairs (without the '.json' extension) in the sfr_arabic directory.
    3. The total number of files in (train, valid) sets. The rest will go in the test set. For our public_1100 trial, we specified [1100, 50].
