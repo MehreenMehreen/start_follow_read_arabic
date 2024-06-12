@@ -41,7 +41,7 @@ The preprocessed directory looks like this: ![directory structure](images/direct
    5.  The total number of sets (e.g. 3). It will create the sub-folders `set0`, `set1`, `set2`. For the public trial, each set folder has `pretrain_train_1150.json`, `pretrain_valid_1150.json`, `pretrain_test_1150.json` files containing the list of [json image] pairs. It also has a config_1150.yaml file. Note 1150 is total_train+total_valid examples.
    6.  For the above example, our script is:
       ```
-      python arabic/create_sets.py data_files/sfr_arabic ['public_sfr'] [1100, 50] trials/public_1100/ 3
+      python arabic/create_trials.py data_files/sfr_arabic ['public_sfr'] [1100, 50] trials/public_1100/ 3
       ```
   
   
