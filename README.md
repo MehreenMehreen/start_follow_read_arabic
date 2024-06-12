@@ -47,7 +47,27 @@ The preprocessed directory looks like this: ![directory structure](images/direct
   
 
 ## Training
-This system only uses stage 1 training of SFR. You can train all networks in parallel or train them one by one.
+This system only uses stage 1 (pretraining stage) training of SFR. You can train all networks in parallel or train them one by one.
+### SOL Network
+use the script arabic/stage1_sol.py with the configuration file as argument. For example to train on trials/public_1100/set0:
+```
+python arabic/stage1_sol.py trials/public_1100/set0/config_1150.yaml
+```
 
+### LF Network
+use the script arabic/stage1_lf.py with the configuration file as argument. For example to train on trials/public_1100/set0:
+```
+python arabic/stage1_lf.py trials/public_1100/set0/config_1150.yaml
+```
 
+### HW Network
+use the script arabic/stage1_hw.py with the configuration file as argument. For example to train on trials/public_1100/set0:
+```
+python arabic/stage1_hw.py trials/public_1100/set0/config_1150.yaml
+```
+
+## Inference
+# Results on the test set
+
+# Inference on a handwritten page image
 
