@@ -9,14 +9,14 @@ You can use this code to train and test handwriting recognition (HTR) of Arabic 
 ## Dataset
 For the dataset, please see [Muharaf: Manuscripts of handwritten Arabic for cursive text recognition](https://github.com/MehreenMehreen/muharaf). 
 
-## Setting up
+## Step 0: Setting up
 1. Clone the repo
 2. Setup the environment
 3. Download the trials folders. These are required for inference on your own handwritten Arabic pages. These are also required for reproducing the results of our paper.
 
 
 
-## Preprocessing
+## Step 1: Preprocessing
 The start, follow, read (SFR) system requires files in a specific format for training. You can download the preprocessed files for [Muharaf-public](https://zenodo.org/records/11492215). Make sure to extract them in the `main start_follow_read_arabic` directory.
 
 In order to preprocess the files yourself, follow these steps:
@@ -31,7 +31,7 @@ Running this will create the following directory structure. You can ignore the r
 ### Directory structure
 The preprocessed directory looks like this: ![directory structure](images/directory_structure.png)
 
-## Splitting data into (Train, Validate, Test) sets
+## Step 2: Splitting data into (Train, Validate, Test) sets
 1. We recommend that you create a directory `trials` in main start_follow_read_arabic directory. Within this directory, you can run various trials.
 2. For example, we ran a trial on Muharaf-public with a split of (1100, 50, 66) images. This trial consisted of three different random splits of (train, validate, test) sets. [Download this folder here](https://zenodo.org/records/11492215). The three sets are in trials->public_1100 folder in sub-folders `set0`, `set1`, `set2`.
 3. To create random splits for a single trial run the script create_trials in the arabic directory. In the arguments specify:
@@ -47,7 +47,7 @@ The preprocessed directory looks like this: ![directory structure](images/direct
   
   
 
-## Training
+## Step 3: Training
 This system only uses stage 1 (pretraining stage) training of SFR. You can train all networks in parallel or train them one by one.
 ### SOL Network
 use the script arabic/stage1_sol.py with the configuration file as argument. For example to train on trials/public_1100/set0:
@@ -67,7 +67,7 @@ use the script arabic/stage1_hw.py with the configuration file as argument. For 
 python arabic/stage1_hw.py trials/public_1100/set0/config_1150.yaml
 ```
 
-## Inference
+## Step 4: Inference
 ### Results on the page images of test set 
 To run inference on test images for a particular trial, use the script `page_predictions.py`. To look at various command line arguments for this script, type:
 ```
