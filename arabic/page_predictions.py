@@ -2,7 +2,7 @@
 import sys
 sys.path.append('py3/')
 sys.path.append('arabic/')
-
+sys.path.append('coords/')
 import json
 import pandas as pd
 import yaml
@@ -12,7 +12,9 @@ import torch
 import os
 import cv2
 import matplotlib.pyplot as plt
-
+import argparse
+import post_process_routines as post
+from utils import error_rates
 
 def get_config(config_file):
     with open(config_file) as f:
@@ -134,8 +136,9 @@ def predict_for_one_config(config_file, result_df,
     return result_df
     
 
-
-def main_function(sets_todo, training_images, main_dir, model_modes, config_name='config', test_name=""):
+# This function will create a results_{total_train}_{model_mode}.csv file to contain results of SOL, LF, HW
+def main_function(sets_todo, training_images, main_dir, model_modes=['pretrain'], 
+                  config_name='config', test_name=""):
     
     columns = ['image_file', 'ground_truth','prediction',
                'region_type',
@@ -153,13 +156,117 @@ def main_function(sets_todo, training_images, main_dir, model_modes, config_name
                 result_df = predict_for_one_config(config_to_use, result_df, model_mode, test_name=test_name_to_use)
                 result_file = main_dir + set_dir + 'result_{}_{}.csv'.format(total_train, model_mode)
                 result_df.to_csv(result_file, index=False)
-                 
-sets_todo = ['set0/', 'set1/', 'set2/']
 
 
-training_images = [1150]
+#CER AFTER REMOVING OVERLAPPING POLYGONS
+# Will compute 
 
-main_dir = 'trials/public_1100/'
-model_modes = ['pretrain' ]
-main_function(sets_todo, training_images, main_dir, model_modes)#, test_name="test_list.json")
-print('done')
+def compute_cer(main_dir, sets_todo, total_train, model_mode='pretrain', no_diacritics=False):
+    columns = ['image_path', 'CER', 'CER_corrected', 'WER', 'WER_corrected']
+    set_cer = []
+    set_cer_corrected = []
+    set_wer = []
+    set_wer_corrected = []
+
+    for s in sets_todo:
+        cer_df = pd.DataFrame(columns=columns)
+        total = 0
+        result_csv = main_dir + s + f'result_{total_train}_{model_mode}.csv'
+        df = pd.read_csv(result_csv)
+        sum_cer = 0
+        sum_corrected_cer = 0
+        sum_wer = 0
+        sum_corrected_wer = 0
+        for ind in range(len(df)):
+            out = {'image_path': df.image_file[ind], 'lf': eval(df.lf_points[ind]), 
+                   'beginning': eval(df['beginning'][ind]),
+                   'ending': eval(df['ending'][ind])}
+            p = post.get_polygon_list_tuples(out)
+            del_list, poly_non_overlapping = post.get_poly_no_overlap(df.image_file[ind], p, 0.7)
+            if type(df.ground_truth[ind]) == float:
+                print('skipping', df.image_file[ind])
+                continue
+            gt = df.ground_truth[ind]
+            ground_truth = gt.replace('nan', "''")
+            ground_truth = eval(ground_truth)
+
+            if len(ground_truth) == 0:
+                print('skipping', df.image_file[ind])
+                continue
+            #print(ground_truth)
+            prediction = eval(df.prediction[ind])
+            cer = error_rates.cer('\n'.join(ground_truth), '\n'.join(prediction))
+            cer_corrected = cer
+            sum_cer += cer
+            wer = error_rates.wer('\n'.join(ground_truth), '\n'.join(prediction))
+            wer_corrected = wer
+            sum_wer += wer
+            if len(del_list) > 0:  
+                prediction = [prediction[i] for i in range(len(prediction)) if i not in del_list]
+                cer_corrected = error_rates.cer('\n'.join(ground_truth), '\n'.join(prediction))
+                wer_corrected = error_rates.wer('\n'.join(ground_truth), '\n'.join(prediction))
+                sum_corrected_cer += cer_corrected
+                sum_corrected_wer += wer_corrected
+            else:
+                sum_corrected_cer += cer
+                sum_corrected_wer += wer
+            total += 1
+            cer_df.loc[len(cer_df)] = [df.image_file[ind], cer, cer_corrected, wer, wer_corrected]
+            print('Image: ', df.image_file[ind])
+            print('CER', cer, 'CER_corrected', cer_corrected, 'WER', wer, 'WER_corrected', wer_corrected)      
+            
+        cer_csv = main_dir + s + f'cer_wer_result_{total_train}_{model_mode}.csv'    
+        cer_df.to_csv(cer_csv)
+        set_cer.append(sum_cer/total)
+        set_cer_corrected.append(sum_corrected_cer/total)
+        set_wer.append(sum_wer/total)
+        set_wer_corrected.append(sum_corrected_wer/total)
+        
+    return set_cer, set_cer_corrected, set_wer, set_wer_corrected
+
+               
+                
+# To define command line arguments
+def get_args():
+    parser = argparse.ArgumentParser(description="Get CER and WER of entire page image")
+    # Define a list argument
+    # Main input directory with preprocessed files
+    parser.add_argument('--main_dir', type=str, default= 'trials/public_1100/',
+                        help='Main trial directory, default is trials/public_1100/')
+    parser.add_argument('--train_valid', type=int, default= 1150, 
+                        help='Total training plus validation images, default for public set is 1150')
+    parser.add_argument('--total_sets', type=int, default= 3,
+                        help='Total sets in trial directory. Default is 3 and will process set0, set1, set2')
+    
+
+    args = parser.parse_args()
+    return args
+                    
+if __name__ == "__main__":
+        
+    args = get_args()
+    total_sets = args.total_sets
+    # Names of sets set0, set1, set2, ...
+    sets_todo = [f'set{n}/' for n in range(total_sets)]
+    training_images = [args.train_valid]
+    main_dir = args.main_dir
+    if main_dir[-1] != '/':
+        main_dir += '/'
+    # Make the intermediate csv result file
+    main_function(sets_todo, training_images, main_dir)#, test_name="test_list.json")
+    # Compute CER + WER (raw) and after removing overlapping polygons
+    set_cer, set_cer_corrected, set_wer, set_wer_corrected = compute_cer(main_dir, sets_todo, args.train_valid)
+                                                                     
+
+    print('****SUMMARY')
+    print('CER: ', set_cer)
+    print('CER corrected: ', set_cer_corrected)
+    print('WER: ', set_wer)
+    print('WER corrected: ', set_wer_corrected)
+    print('Mean cer without correction: {:.3f}'.format(np.mean(set_cer)))
+    print('Mean cer with correction: {:.3f}'.format(np.mean(set_cer_corrected)))
+
+    print('Mean wer without correction: {:.3f}'.format(np.mean(set_wer)))
+    print('Mean wer with correction: {:.3f}'.format(np.mean(set_wer_corrected)))
+   
+    print('done')

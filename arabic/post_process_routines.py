@@ -2,8 +2,8 @@ import numpy as np
 import cv2
 import json
 import sys
-sys.path.append('../../')
-from coords import points
+sys.path.append('coords/')
+import points
 from PIL import Image, ImageDraw
 import os
 import matplotlib.pyplot as plt

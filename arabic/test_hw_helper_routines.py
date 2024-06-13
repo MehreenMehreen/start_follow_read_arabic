@@ -1,5 +1,5 @@
 import sys
-sys.path.append('../py3/')
+sys.path.append('py3/')
 import os
 import json
 import yaml
@@ -125,7 +125,7 @@ def write_csv_all_predictions(config_file, suffix="", device="cuda", flip=False,
                 if record['gt'] == 'None' or isinstance(record['gt'], float) or record['gt'] == 'nan' or len(record['gt']) == 0:
                     print(type(record['gt']), record['gt'], record['hw_path'])
                     continue
-                print(record['hw_path'])
+                #print(record['hw_path'])
                 predicted_str = get_predicted_str(HW, record['hw_path'], idx_to_char, device=device, 
                                                   flip=flip, tokenizer=tokenizer)
                 

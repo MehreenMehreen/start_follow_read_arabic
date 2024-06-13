@@ -12,6 +12,7 @@ import numpy as np
 import yaml
 import shutil
 import create_set_routines as create
+import argparse
 
 
 
@@ -123,9 +124,9 @@ def write_config_for_pretrain_only(config, set_dir, total_train_valid, copy_pret
     
         
     # Reset interval
-    config['training']['lf']['reset_interval'] = 60*60*120  # 5 days
-    config['training']['hw']['reset_interval'] = 60*60*120
-    config['training']['sol']['reset_interval'] = 60*60*120
+    config['training']['lf']['reset_interval'] = 60*60*72  # 3 days
+    config['training']['hw']['reset_interval'] = 60*60*72
+    config['training']['sol']['reset_interval'] = 60*60*72
     
     # Stage 2 specific
     config['training']['alignment']['train_log_file'] = set_dir + f'log_align_train_{total_train_valid}.csv'
@@ -160,24 +161,56 @@ def write_config_for_pretrain_only(config, set_dir, total_train_valid, copy_pret
     with open(config_filename, 'w') as fout:
         yaml.dump(config, fout) 
 
+# To define command line arguments
+def get_args():
+    parser = argparse.ArgumentParser(description="Create random splits of training, validation, testing")
+    # Define a list argument
+    # Main input directory with preprocessed files
+    parser.add_argument('--input_dir', type=str, default= 'data_files/sfr_arabic',
+                        help='Main input directory of preprocessed files')
+    parser.add_argument('--input_files', type=str, default= ['public_sfr'], nargs='+',
+                        help='List of input json files (without json extension), e.g., public_sfr')
+    parser.add_argument('--train_valid', type=int, default= [1100, 50], nargs=2,
+                        help='Total training examples and validation examples')
+    parser.add_argument('--output_dir', type=str, default= 'trials/public_1100/',
+                        help='Output directory for the trial')
+    parser.add_argument('--total_sets', type=int, default= 3,
+                        help='Total sets to create')
+    
+
+    args = parser.parse_args()
+    return args
+    
+        
 
 if __name__ == "__main__":
 
     # This will create a reproducible split of train, valid, test sets            
     SEED = 37
-    main_data_sfr_dir = 'data_files/sfr_arabic'
-    if len(sys.argv) > 1:
-        main_data_sfr_dir = sys.argv[1]
+    
+    args = get_args()
+    
+                        
+    # Main input directory with preprocessed files
+    main_data_sfr_dir = args.input_dir
             
-    input_pretrain_batch = ['public_sfr']
-    # Will run on public dataset with 1100 training images
-    output_dir = 'trials/public_1100/'
+    # Main directories to use for generating trials..Can be ['public_sfr', 'restricted_sfr']
+    input_pretrain_batch = args.input_files
+        
+    train_valid = args.train_valid
+    
+    # Where to create the data splits
+    output_dir = args.output_dir        
     if not os.path.exists(output_dir):
         os.mkdir(output_dir)
-    
-    sets_todo = ['set0/', 'set1/', 'set2/']
+    if output_dir[-1] != '/':
+        output_dir += '/'
+    total_sets = args.total_sets
 
-    train_valid = [1100, 50]
+    # Names of sets set0, set1, set2, ...
+    sets_todo = [f'set{n}/' for n in range(total_sets)]
+    
+
     total_train_valid = train_valid[0] + train_valid[1]
     PRETRAIN_SUFFIX = total_train_valid
     sample_config = get_config('trials/sample_config.yaml')  
@@ -198,7 +231,6 @@ if __name__ == "__main__":
     print('done') 
             
     
-
 
 
 
