@@ -45,8 +45,11 @@ The preprocessed directory looks like this: ![directory structure](images/direct
       ```
       python arabic/create_trials.py
       ```
-  
-  
+      Or to create a trial called `public_1000` with `1000 training images`, `100 validation images` from `public_sfr` with 4 different splits of (train, validation, test) use this code:
+      ```
+      python arabic/create_trials.py --input_dir data_files/sfr_arabic --input_files public_sfr --train_valid 1000 100 --output_dir trials/public_1000 --total_sets 4 
+      ``` 
+  The SEED value for the random splits is set to 37 for reproducibility of pubic_1100. You can change this value in code.
 
 ## Step 3: Training
 This system only uses stage 1 (pretraining stage) training of SFR. You can train all networks in parallel or train them one by one. We ran trial_15 and public_1100 trials for 72 hours. The models are saved in the pretrain folder. The best model has the name `sol.pt`, `lf.pt`, or `hw.pt`. The last saved network has the suffix `_last`.
