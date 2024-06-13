@@ -90,5 +90,6 @@ python arabic/line_predictions.py trials/public_1100 3 config_1150.yaml
 Running the above will reproduce the results of the paper
 ### Inference on a handwritten page image
 Run inference on your own handwritten Arabic page images using `arabic/annotate_files_in_directory.py`. This script will read all the image files (jpg extension) in a directory and create a corresponding JSON file for each image. For example, to get the predictions in a directory called images, run the following. Here the second argument specifies the configuration file to use. We recommend using `trial_15` `set0` config file as it has the best CER/WER results (compared to `set1` and `set2`):
+```
 python arabic/annotate_files_in_directory.py images/ trials/trial_15/set0/config_1550.yaml ```
 ```
