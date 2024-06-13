@@ -68,8 +68,26 @@ python arabic/stage1_hw.py trials/public_1100/set0/config_1150.yaml
 
 ## Inference
 ### Results on the page images of test set 
-
+To run inference on test images for a particular trial, use the script `page_predictions.py`. To look at various command line arguments for this script, type:
+```
+python arabic/page_predictions.py -h
+```
+For example, to run inference on all test files (filename read from configuration file) in a trial directory, run the following: 
+```
+python arabic/page_predictions.py --main_dir trials/public_1100 --train_valid 1150
+```
+This script will output the CER and WER on the entire page image.
 ### Results on the line images of test set 
-
+Run `arabic/line_predictions.py` to get the performance of the HW network on line images (without segmenting the page). It takes three arguments:
+1. Argument 1 is the name of the trial directory
+2. Total sets in the trial directory
+3. Name of the configuration file
+For example to get the line predictions on the `public_1100` trial folder type:
+```
+python arabic/line_predictions.py trials/public_1100 3 config_1150.yaml 
+```
+Running the above will reproduce the results of the paper
 ### Inference on a handwritten page image
-
+Run inference on your own handwritten Arabic page images using `arabic/annotate_files_in_directory.py`. This script will read all the image files (jpg extension) in a directory and create a corresponding JSON file for each image. For example, to get the predictions in a directory called images, run the following. Here the second argument specifies the configuration file to use. We recommend using `trial_15` `set0` config file as it has the best CER/WER results (compared to `set1` and `set2`):
+python arabic/annotate_files_in_directory.py images/ trials/trial_15/set0/config_1550.yaml ```
+```
