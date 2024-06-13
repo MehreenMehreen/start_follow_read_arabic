@@ -12,6 +12,7 @@ For the dataset, please see [Muharaf: Manuscripts of handwritten Arabic for curs
 ## Setting up
 1. Clone the repo
 2. Setup the environment
+3. Download the trials folders. These are required for inference on your own handwritten Arabic pages. These are also required for reproducing the results of our paper.
 
 
 
