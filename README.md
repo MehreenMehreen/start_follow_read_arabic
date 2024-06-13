@@ -49,7 +49,9 @@ The preprocessed directory looks like this: ![directory structure](images/direct
   
 
 ## Step 3: Training
-This system only uses stage 1 (pretraining stage) training of SFR. You can train all networks in parallel or train them one by one.
+This system only uses stage 1 (pretraining stage) training of SFR. You can train all networks in parallel or train them one by one. We ran trial_15 and public_1100 trials for 72 hours. The models are saved in the pretrain folder. The best model has the name `sol.pt`, `lf.pt`, or `hw.pt`. The last saved network has the suffix `_last`.
+
+You can modify the configuration files to change this time. You can also modify the configuration files to point to different training and validation sets or a different folder to create the files with model weights. 
 ### SOL Network
 use the script arabic/stage1_sol.py with the configuration file as argument. For example to train on trials/public_1100/set0:
 ```
