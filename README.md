@@ -29,7 +29,7 @@ In order to preprocess the files yourself, follow these steps:
    ```
 Running this will create the following directory structure. You can ignore the restricted part, if you don't have these files. The system can be trained and tested witht the Muharaf-public part only:   
 
-### Directory structure
+### Preprocessed directory structure
 The preprocessed directory looks like this: ![directory structure](images/directory_structure.png)
 
 ## Step 2: Splitting data into (Train, Validate, Test) sets
