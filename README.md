@@ -12,11 +12,12 @@ For the dataset, please see [Muharaf: Manuscripts of handwritten Arabic for curs
 ## Step 0: Setting up
 1. Clone the repo
 2. Setup the environment
-3. Download the trials folders. These are required for inference on your own handwritten Arabic pages. These are also required for reproducing the results of our paper.
+3. Download the preprocessed files (optional). Either download them or run the [preprocessing step](#preprocess).
+4. Download the trials folders. These are required for inference on your own handwritten Arabic pages. These are also required for reproducing the results of our paper.
 
 
 
-## Step 1: Preprocessing
+## <a name="preprocess"></a> Step 1: Preprocessing
 The start, follow, read (SFR) system requires files in a specific format for training. You can download the preprocessed files for [Muharaf-public](https://zenodo.org/records/11492215). Make sure to extract them in the `main start_follow_read_arabic` directory.
 
 In order to preprocess the files yourself, follow these steps:
