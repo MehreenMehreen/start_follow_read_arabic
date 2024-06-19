@@ -41,7 +41,7 @@ In order to preprocess the files yourself, follow these steps:
 Running this will create the following directory structure. You can ignore the restricted part, if you don't have these files. The system can be trained and tested with the Muharaf-public part only:   
 
 ### Preprocessed directory structure
-The preprocessed directory looks like this: ![directory structure](images/directory_structure.png)
+The preprocessed directory should look like this: ![directory structure](images/directory_structure.png)
 
 ## Step 2: Splitting data into (Train, Validate, Test) sets
 1. We recommend that you create a directory `trials` in main start_follow_read_arabic directory. Within this directory, you can run various trials.
