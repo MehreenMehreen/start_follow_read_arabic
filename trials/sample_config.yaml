@@ -1,0 +1,149 @@
+# Has entries for both stage 1 and stage 2 entries. So as only stage1 is done so many entries are redundant but kept here in case stage 2 running is required
+# Fill out the entries or use create_sets.py script to run everything
+network:
+  hw:
+    char_set_path: trials/charset.json
+    cnn_out_size: 1024
+    input_height: 60
+    num_of_channels: 3
+    num_of_outputs: 164
+    transfer_path: trials/hw.pt
+    use_instance_norm: true
+  lf:
+    look_ahead_matrix: null
+    step_bias: null
+  lm:
+    beam: 8
+    fst_path: ../hwn5-comp-2017/data/comp_lm/data/graph/HCLG.fst
+    mdl_path: ../hwn5-comp-2017/data/comp_lm/data/lang_test/basic.mdl
+    phones_path: ../hwn5-comp-2017/data/comp_lm/data/lang_test/phones.txt
+    words_path: ../hwn5-comp-2017/data/comp_lm/data/graph/words.txt
+  sol:
+    base0: 16
+    base1: 16
+post_processing:
+  lf_nms_range:
+  - 0
+  - 6
+  lf_nms_threshold: 0.5
+  sol_threshold: 0.1
+pretraining:
+  hw:
+    batch_size: 8
+    images_per_epoch: 2000
+    learning_rate: 0.0002
+    log_file: 
+    stop_after_no_improvement: 40
+  lf:
+    batch_size: 1
+    images_per_epoch: 400
+    learning_rate: 0.0001
+    log_file: 
+    stop_after_no_improvement: 40
+  pretrained_path: 
+  snapshot_path: 
+  sol:
+    alpha_alignment: 0.1
+    alpha_backprop: 0.1
+    batch_size: 1
+    crop_params:
+      crop_size: 256
+      prob_label: 0.5
+    images_per_epoch: 2000
+    learning_rate: 0.0001
+    log_file: 
+    stop_after_no_improvement: 40
+    training_rescale_range:
+    - 384
+    - 640
+    validation_rescale_range:
+    - 512
+    - 512
+  training_set:
+    file_list: 
+    img_folder: ''
+    json_folder: ''
+  validation_set:
+    file_list: 
+    img_folder: ''
+    json_folder: ''
+testing:
+  test_file: 
+training:
+  alignment:
+    accept_threshold: 0.1
+    max_lines_per_image: 4
+    metric: cer
+    reset_interval: 600
+    sol_resize_width: 512
+    train_log_file: 
+    train_refresh_groups: 10
+    validate_log_file: 
+    validation_post_processing:
+      lf_nms_ranges:
+      - - 0
+        - 6
+      - - 0
+        - 16
+      - - 0
+        - 20
+      lf_nms_thresholds:
+      - 0.1
+      - 0.3
+      - 0.5
+      - 0.7
+      - 0.9
+      sol_thresholds:
+      - 0.1
+      - 0.3
+      - 0.5
+      - 0.7
+      - 0.9
+  hw:
+    batch_size: 8
+    images_per_epoch: 100
+    learning_rate: 0.0002
+    log_file: 
+    refresh_interval: 3600
+    reset_interval: 432000
+    validation_subset_size: 2000
+  lf:
+    batch_size: 1
+    images_per_epoch: 100
+    learning_rate: 0.0001
+    log_file: 
+    refresh_interval: 3600
+    reset_interval: 432000
+    validation_subset_size: 100
+  snapshot:
+    best_overall: 
+    best_validation: 
+    current: 
+    init: 
+    pretrain: 
+  sol:
+    alpha_alignment: 0.1
+    alpha_backprop: 0.1
+    batch_size: 1
+    crop_params:
+      crop_size: 256
+      prob_label: 0.5
+    images_per_epoch: 100
+    learning_rate: 0.0001
+    log_file: 
+    reset_interval: 432000
+    training_rescale_range:
+    - 384
+    - 640
+    validation_rescale_range:
+    - 512
+    - 512
+    validation_subset_size: 1000
+  training_set:
+    file_list: 
+    img_folder: ''
+    json_folder: ''
+  validation_set:
+    file_list: 
+    img_folder: ''
+    json_folder: ''
