@@ -45,8 +45,10 @@ The preprocessed directory should look like this: ![directory structure](images/
 
 ## Step 2: Splitting data into (Train, Validate, Test) sets
 1. We recommend that you create a directory `trials` in main start_follow_read_arabic directory. Within this directory, you can run various trials.
-2. For example, we ran a trial on Muharaf-public with a split of (1100, 50, 66) images. This trial consisted of three different random splits of (train, validate, test) sets. [Download this folder here](https://zenodo.org/records/11492215). The three sets are in trials->public_1100 folder in sub-folders `set0`, `set1`, `set2`.
-3. To create random splits for a single trial run the script create_trials in the arabic directory. In the arguments specify:
+2. For example:
+   1. We ran a trial on Muharaf-public with a split of (1100, 50, 66) images. This trial consisted of three different random splits of (train, validate, test) sets. You can [Download the public_1100_untrained folder](https://zenodo.org/records/11492215/files/public_1100_untrained.zip?download=1), which has an initialized empty trial with three different splits. Run the training script using the configuration files in this folder. Alternatively, [download the public_1100 trained models](https://zenodo.org/records/11492215/files/public_1100_trained.zip?download=1). The three sets are in trials->public_1100 folder in sub-folders `set0`, `set1`, `set2`.
+   2. We ran a trial on the entire dataset. You can [download the initialized trial_15](https://zenodo.org/records/11492215/files/trial_15_untrained.zip?download=1) or [download the trained models of trial 15](https://zenodo.org/records/11492215/files/trial_15.zip?download=1).
+4. To create random splits for a single trial run the script create_trials in the arabic directory. In the arguments specify:
    1. input_dir: The input directory for preprocessed files. Default is data_files/sfr_arabic
    2. input_files: The list of input files created after preprocessing, e.g., ['public_sfr'] (default) for only public files or \['public_sfr', 'restricted_sfr'\]. These are the names of json files containing \[json image\] pairs (without the '.json' extension) in the sfr_arabic directory.
    3. train_valid: The total number of files in (train, valid) sets. The rest will go in the test set. Default for our public_1100 trial is 1100 50.
