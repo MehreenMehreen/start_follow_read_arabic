@@ -10,10 +10,19 @@ You can use this code to train and test handwriting recognition (HTR) of Arabic 
 For the dataset, please see [Muharaf: Manuscripts of handwritten Arabic for cursive text recognition](https://github.com/MehreenMehreen/muharaf). 
 
 ## Step 0: Setting up
-1. Clone the repo
-2. Setup the environment
-3. Download the preprocessed files (optional). Either download them or run the [preprocessing step](#preprocess).
-4. Download the trials folders. These are required for inference on your own handwritten Arabic pages. These are also required for reproducing the results of our paper.
+1. Clone the repo:
+   ```
+   https://github.com/MehreenMehreen/start_follow_read_arabic
+   ```
+3. Create the conda environment `sfr_arabic` from requirements.yml and activate it
+   ```
+   conda env create -f requirements.yml
+   conda activate sfr_arabic
+   ```
+   
+5. Download the preprocessed files (optional). Either [download them](https://zenodo.org/records/11492215/files/sfr_files.zip?download=1) or run the [preprocessing step](#preprocess).
+   
+7. Download the trials folders. You can download [trial_15](https://zenodo.org/records/11492215/files/trial_15.zip?download=1) or [trial on Muharaf-public](https://zenodo.org/records/11492215/files/public_1100_trained.zip?download=1). These are required for inference on your own handwritten Arabic pages. These are also required for reproducing the results of our paper.
 
 
 
