@@ -64,6 +64,7 @@ The preprocessed directory should look like this: ![directory structure](images/
 The SEED value for the random splits is set to 37 for reproducibility of pubic_1100. You can change this value in code.
 
 ### Trials directory structure
+The trials directory structure looks like this: ![Trials directory structure](images/trials.png)
 
 ## Step 3: Training
 This system only uses stage 1 (pretraining stage) training of SFR. You can train all networks in parallel or train them one by one. We ran trial_15 and public_1100 trials for 72 hours. The models are saved in the pretrain folder. The best model has the name `sol.pt`, `lf.pt`, or `hw.pt`. The last saved network has the suffix `_last`.
