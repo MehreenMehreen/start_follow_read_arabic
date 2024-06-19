@@ -38,7 +38,7 @@ In order to preprocess the files yourself, follow these steps:
    ```
    python arabic/preprocessing_all.py ../data_files/public
    ```
-Running this will create the following directory structure. You can ignore the restricted part, if you don't have these files. The system can be trained and tested witht the Muharaf-public part only:   
+Running this will create the following directory structure. You can ignore the restricted part, if you don't have these files. The system can be trained and tested with the Muharaf-public part only:   
 
 ### Preprocessed directory structure
 The preprocessed directory looks like this: ![directory structure](images/directory_structure.png)
