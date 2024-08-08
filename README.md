@@ -88,6 +88,8 @@ use the script arabic/stage1_hw.py with the configuration file as argument. For 
 python arabic/stage1_hw.py trials/public_1100/set0/config_1150.yaml
 ```
 
+Note: For trial_15 and public_1100 trials, we started training the hw network, which was pretrained on synthetic images. We generated synthetic Arabic text images on different types of backgrounds. We'll soon publish the code and dataset used for this purpose.
+
 ## Step 4: Inference
 ### Results on the page images of test set 
 To run inference on test images for a particular trial, use the script `page_predictions.py`. To look at various command line arguments for this script, type:
