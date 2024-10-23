@@ -3,13 +3,13 @@
 
 The line-level cross dataset evaluation of different training and test sets has the following CER:
 
-|                 | Test    | Test    | Test    |
-|                 | MADCAT  |  KHATT  | Muharaf |
-|:---------------:|--------:|:-------:|:-------:|
-| Train MADCAT    |  0.05   | 0.178   |  0.435  |
-| Train KHATT     |  0.170  | 0.142   |  0.438  |
-| Train Muharaf   |  0.277  | 0.331   |  0.148  |     
 
+| Train/Test      | Test MADCAT  |  Test KHATT  | Test Muharaf |
+|:---------------:|-------------:|:------------:|:------------:|
+| Train MADCAT    |  0.05        | 0.178   |  0.435  |
+| Train KHATT     |  0.170       | 0.142   |  0.438  |
+| Train Muharaf   |  0.277       | 0.331   |  0.148  |     
+  
 
 ### Some notes on the above results
 - All Muharaf images were used for testing
