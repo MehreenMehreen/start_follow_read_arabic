@@ -1,11 +1,13 @@
 # Inference Results
 ## Cross-Dataset validation results of SFR-Arabic
 
+The line-level cross dataset evaluation of different training and test sets has the following results:
+
               TEST
 | Train\Test      | MADCAT  |  KHATT  | Muharaf |
 |:---------------:|--------:|:-------:|:-------:|
 | Train MADCAT    |         | 0.178   |  0.435  |
-| Train KHATT     |  0.170  |         | 0.438   |
+| Train KHATT     |  0.170  |         |  0.438  |
 | Train Muharaf   |  0.277  | 0.331   |         |
 
 
