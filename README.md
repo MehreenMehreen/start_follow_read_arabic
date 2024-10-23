@@ -116,3 +116,6 @@ Run inference on your own handwritten Arabic page images using `arabic/annotate_
 ```
 python arabic/annotate_files_in_directory.py images/ trials/trial_15/set0/config_1550.yaml ```
 ```
+
+## Inference results
+The inference results are given in our paper [Muharaf: Manuscripts of Handwritten Arabic Dataset for Cursive Text Recognition](https://arxiv.org/abs/2406.09630). For additional results, please see [inference.md](inference.md).
