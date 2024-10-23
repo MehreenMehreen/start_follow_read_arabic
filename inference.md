@@ -1,7 +1,7 @@
 # Inference Results
 ## Cross-Dataset validation results of SFR-Arabic
 
-The line-level cross dataset evaluation of different training and test sets has the following results:
+The line-level cross dataset evaluation of different training and test sets has the following CER:
 
               TEST
 | Train\Test      | MADCAT  |  KHATT  | Muharaf |
