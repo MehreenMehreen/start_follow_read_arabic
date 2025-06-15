@@ -8,6 +8,11 @@ We release this code under the same license as given as given on this page [Star
 
 You can use this code to train and test handwriting recognition (HTR) of Arabic historic manuscripts.
 
+## Update
+- Check out our latest model trained on 3382 images and its demo on 🤗[HuggingFace](https://mehreenmehreen-arabicocr.hf.space). More details to follow soon.
+- 🤗 Now on HuggingFace! [Muharaf-public line images](https://huggingface.co/datasets/aamijar/muharaf-public)
+
+
 ## Dataset
 For the dataset, please [download Muharaf](https://zenodo.org/records/11492215/files/public_data_files.zip?download=1). Its related software are hosted at [Muharaf: Manuscripts of handwritten Arabic for cursive text recognition](https://github.com/MehreenMehreen/muharaf). 
 
