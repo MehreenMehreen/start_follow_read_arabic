@@ -41,7 +41,7 @@ In order to preprocess the files yourself, follow these steps:
 2. On the command line, switch to the main `start_follow_read_arabic` directory. Activate the sfr environment.
 3. From the command line run:
    ```
-   python arabic/preprocessing_all.py ../data_files/public
+   python arabic/preprocess_and_clean.py ../data_files/public
    ```
 Running this will create the following directory structure. You can ignore the restricted part, if you don't have these files. The system can be trained and tested with the Muharaf-public part only:   
 
