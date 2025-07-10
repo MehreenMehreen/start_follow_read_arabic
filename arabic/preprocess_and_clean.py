@@ -996,7 +996,7 @@ if __name__ == "__main__":
     print('All preprocessing is done')
         
 
-# Example run: python arabic/preprocessing_all.py --src_directory ~/mehreen/datasets/scribeArabic_2/ --set_names Nasrallah --annotators sfr lp_sfr
+# Example run: python arabic/preprocessing_and_clean.py --src_directory ~/mehreen/datasets/scribeArabic_2/ --set_names Nasrallah --annotators sfr lp_sfr
 
 
 
