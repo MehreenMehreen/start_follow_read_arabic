@@ -124,3 +124,6 @@ python arabic/annotate_files_in_directory.py images/ trials/trial_15/set0/config
 
 ## Inference results
 The inference results are given in our paper [Muharaf: Manuscripts of Handwritten Arabic Dataset for Cursive Text Recognition](https://arxiv.org/abs/2406.09630). For additional results, please see [inference.md](inference.md).
+
+## Inference example
+Download the code and model files on 🤗[HuggingFace](https://mehreenmehreen-arabicocr.hf.space). It is a good example on how to use this model only for inference.
